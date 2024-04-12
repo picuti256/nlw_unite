@@ -8,7 +8,7 @@ export const errorHandler: FastifyErrorHandler = (error, req, res) => {
   if (error instanceof ZodError) {
     return res.status(400).send({
       message: `Error during validation`,
-      errors: error.format(),
+      errors: error.flatten().fieldErrors,
     });
   }
 
